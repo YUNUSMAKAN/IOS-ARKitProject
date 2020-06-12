@@ -47,6 +47,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Pause the view's session
         sceneView.session.pause()
+        
+        for node in sceneView.scene.rootNode.childNodes {
+            
+            let moveShip = SCNAction.moveBy(x: 0, y: 0.5, z: 0.5, duration: 1)
+            let fadeOut = SCNAction.fadeOpacity(to: 0.5, duration: 1) 
+            let fadeIn = SCNAction.fadeOpacity(by: 1, duration: 1)
+            let sequence = SCNAction.sequence([moveShip,fadeOut,fadeIn])
+            
+            let repeatForever = SCNAction.repeatForever(sequence) // Islemi devamli yapmis oluruz.
+            
+            
+            node.runAction(repeatForever)
+
+
+
+        }
     }
 
     // MARK: - ARSCNViewDelegate
